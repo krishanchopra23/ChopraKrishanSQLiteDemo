@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+
     public static final String NAME = "students";
     public static final String ID = "id";
     public static final String FIRST = "first";
@@ -16,15 +17,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "studentBase.db";
 
-
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 1);
-        //SQLiteDatabase db = this.getWritableDatabase();
+        super(context, DATABASE_NAME, null, 1);  //creates dbase
+
     }
 
+
     @Override
-    public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + NAME + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " + "FIRST TEXT, LAST TEXT, GRADE INT)");
+    public void onCreate(SQLiteDatabase db) {  //db is passed in
+        db.execSQL("CREATE TABLE " + NAME + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " + "FIRST TEXT, LAST TEXT, GRADE INT)");  //creates table inside of dbase
     }
 
     @Override
@@ -48,9 +49,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public Cursor getAllData() {
+    public Cursor getAllData(){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select * from " + NAME, null);
+        Cursor cursor = db.rawQuery("select * from " + NAME , null); //query the dbase for all the data from the data
         return cursor;
+
     }
 }
